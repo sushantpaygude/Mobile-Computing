@@ -1,7 +1,6 @@
 package com.example.sushantpaygude.finalproject.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,7 +29,6 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Map;
 

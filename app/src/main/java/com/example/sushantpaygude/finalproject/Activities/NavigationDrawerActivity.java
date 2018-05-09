@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.sushantpaygude.finalproject.Fragments.MainFragment;
-import com.example.sushantpaygude.finalproject.Fragments.RestaurantsFragment;
 import com.example.sushantpaygude.finalproject.R;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;

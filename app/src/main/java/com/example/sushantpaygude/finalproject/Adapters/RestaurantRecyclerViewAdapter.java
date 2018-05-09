@@ -1,7 +1,6 @@
 package com.example.sushantpaygude.finalproject.Adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sushantpaygude.finalproject.POJOs.Yelp.YelpRestaurantResponse.Business;
-import com.example.sushantpaygude.finalproject.POJOs.Yelp.YelpRestaurantResponse.YelpResponse;
 import com.example.sushantpaygude.finalproject.R;
 import com.squareup.picasso.Picasso;
 
