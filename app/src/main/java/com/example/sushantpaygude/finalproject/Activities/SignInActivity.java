@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.sushantpaygude.finalproject.R;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
@@ -18,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private SignInButton signInButton;
+    private ImageButton signInButton;
     private GoogleSignInClient googleSignInClient;
 
     @Override
@@ -32,7 +34,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+//        signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setOnClickListener(this);
     }
 
