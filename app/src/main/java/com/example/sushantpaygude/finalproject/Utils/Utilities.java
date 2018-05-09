@@ -40,13 +40,13 @@ public class Utilities {
     public static String GOOGLESIGNINACCOUNT = "GOOGLESIGNINACCOUNT";
     public static String GOOGLESIGNINCLIENT = "GOOGLESIGNINACCOUNT";
 
-    
+
     //TICKETMASTERS API IDS AND URLS
     public static String TicketMasterAuthorization = "Authorization";
     public static String TICKETMASTER_API_KEY = "";
     public static String TICKETMASTER_SEARCH_BASE_STRING = "https://app.ticketmaster.com/discovery/v2/events.json?";
-    public static String TICKETMASTER_GET_EVENTS_BY_LOCATION = TICKETMASTER_SEARCH_BASE_STRING + "geoPoint=%s&radius=%s&apikey=%s";
-
+    public static String TICKETMASTER_GET_EVENTS_BY_LOCATION = TICKETMASTER_SEARCH_BASE_STRING + "geoPoint=%s&radius=%s&apikey=%s&page=%s";
+    public static String EVENTS = "Events";
     public static Map<String, String> getTicketMasterTokenParams(Context context) {
         //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 

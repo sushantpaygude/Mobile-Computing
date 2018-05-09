@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager)
     {
         viewPagerAdapter.addFragment(new RestaurantsFragment(), Utilities.RESTAURANTS);
-        viewPagerAdapter.addFragment(new EventsFragment(), "Two");
+        viewPagerAdapter.addFragment(new EventsFragment(), Utilities.EVENTS);
         viewPagerAdapter.addFragment(new RestaurantsFragment(), "Three");
 
         viewPager.setAdapter(viewPagerAdapter);

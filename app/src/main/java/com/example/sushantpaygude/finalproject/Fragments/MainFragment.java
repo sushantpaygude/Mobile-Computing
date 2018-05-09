@@ -58,7 +58,7 @@ public class MainFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         viewPagerAdapter.addFragment(new RestaurantsFragment(), Utilities.RESTAURANTS);
-        viewPagerAdapter.addFragment(new RestaurantsFragment(), "Two");
+        viewPagerAdapter.addFragment(new EventsFragment(),Utilities.EVENTS);
         viewPagerAdapter.addFragment(new RestaurantsFragment(), "Three");
 
         viewPager.setAdapter(viewPagerAdapter);

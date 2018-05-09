@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.EventViewHolder>{
 
-    private ArrayList<Event> ticketMasterEventArrayList = new ArrayList<>();
+    private ArrayList<Event> ticketMasterEventArrayList;
 
 
     public EventRecyclerViewAdapter(ArrayList<Event> ticketMasterEventArrayList) {
@@ -38,11 +38,12 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         Event event = ticketMasterEventArrayList.get(position);
 
         holder.textEventTitle.setText(event.getName());
-        //holder.textEventAddress.setText(event.getEmbedded().getVenues().get(0).getAddress().toString());
-//        Picasso.get()
-//                .load(event.getImages().get(0).)
-//                .into(holder.imageEvent);
-        holder.textEventUrl.setText(String.valueOf(event.getUrl()));
+        holder.textEventAddress.setText(event.getEmbedded().getVenues().get(0).getAddress().getLine1());
+        Picasso.get()
+                .load(event.getImages().get(0).getUrl())
+                .into(holder.imageEvent);
+        holder.textEventDate.setText("Date: "+event.getDates().getStart().getLocalDate());
+        holder.textEventTime.setText("Time: "+event.getDates().getStart().getLocalTime());
     }
 
     @Override
@@ -56,14 +57,16 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         private ImageView imageEvent;
         private TextView textEventTitle;
         private TextView textEventAddress;
-        private TextView textEventUrl;
+        private TextView textEventDate;
+        private TextView textEventTime;
 
         public EventViewHolder(View itemView) {
             super(itemView);
             imageEvent = itemView.findViewById(R.id.imageEvent);
             textEventTitle = itemView.findViewById(R.id.textEventTitle);
             textEventAddress = itemView.findViewById(R.id.textEventAddress);
-            textEventUrl = itemView.findViewById(R.id.textEventUrl);
+            textEventDate = itemView.findViewById(R.id.textEventDate);
+            textEventTime = itemView.findViewById(R.id.textEventTime);
         }
     }
 }

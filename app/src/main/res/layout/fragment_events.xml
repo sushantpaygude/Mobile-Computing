@@ -1,13 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sushantpaygude.finalproject.Fragments.EventsFragment">
+    tools:context="com.example.sushantpaygude.finalproject.Fragments.EventsFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/eventsRecyclerView"/>
+        android:id="@+id/eventsRecyclerView" />
 
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/events_progressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center|center_horizontal"
+        android:visibility="gone"/>
+</LinearLayout>
