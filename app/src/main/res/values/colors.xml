@@ -6,4 +6,5 @@
     <color name="colorOrange">#FF644A</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="mapboxGrayLight">#c6d2e1</color>
 </resources>

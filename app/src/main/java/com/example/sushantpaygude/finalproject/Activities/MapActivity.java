@@ -81,11 +81,14 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
     private static final String TAG = "MapActivity";
     private NavigationMapRoute navigationMapRoute;
 
+    private Button navigationButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, Utilities.MAPBOX_API_KEY);
         setContentView(R.layout.activity_map);
+        navigationButton = findViewById(R.id.navigationButton);
         mapView = (MapView) findViewById(R.id.mapView);
 
         destinationLocation = new Location("");
@@ -113,10 +116,19 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
             //Log.e("Name",extras.getString("Name"));
         }
 
+        setListeners();
+
+        mapView.onCreate(savedInstanceState);
+    }
+
+    private void setListeners() {
+
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final MapboxMap mapboxMap) {
                 map = mapboxMap;
+
+                enableLocationPlugin();
 
                 if (destinationMarker != null) {
                     map.removeMarker(destinationMarker);
@@ -124,15 +136,34 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
                 destinationMarker = map.addMarker(new MarkerOptions()
                         .position(destinationCoordinates));
 
-                enableLocationPlugin();
-
+                navigationButton.setEnabled(true);
+                navigationButton.setBackgroundResource(R.color.colorOrange);
                 destinationPosition = Point.fromLngLat(destinationCoordinates.getLongitude(),
-                                            destinationCoordinates.getLatitude());
+                        destinationCoordinates.getLatitude());
                 originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
                 getRoute(originPosition, destinationPosition);
             }
         });
-        mapView.onCreate(savedInstanceState);
+
+        navigationButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Point origin = originPosition;
+                Point destination = destinationPosition;
+                // Pass in your Amazon Polly pool id for speech synthesis using Amazon Polly
+                // Set to null to use the default Android speech synthesizer
+                String awsPoolId = null;
+                boolean simulateRoute = true;
+                NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                        .origin(origin)
+                        .destination(destination)
+                        .awsPoolId(awsPoolId)
+                        .shouldSimulateRoute(simulateRoute)
+                        .build();
+
+                // Call this method with Context from within an Activity
+                NavigationLauncher.startNavigation(MapActivity.this, options);
+            }
+        });
     }
 
     @SuppressWarnings({"MissingPermission"})
