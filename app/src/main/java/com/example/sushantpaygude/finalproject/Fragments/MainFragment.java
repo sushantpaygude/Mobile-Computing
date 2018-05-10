@@ -46,9 +46,6 @@ public class MainFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         tabLayout = view.findViewById(R.id.tabs);
         viewPager = view.findViewById(R.id.viewPager);
-        //toolbar = view.findViewById(R.id.toolbar);
-        //view.setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         setupViewPager(viewPager);
@@ -58,8 +55,9 @@ public class MainFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         viewPagerAdapter.addFragment(new RestaurantsFragment(), Utilities.RESTAURANTS);
-        viewPagerAdapter.addFragment(new EventsFragment(),Utilities.EVENTS);
-        viewPagerAdapter.addFragment(new RestaurantsFragment(), "Three");
+        viewPagerAdapter.addFragment(new EventsFragment(), Utilities.EVENTS);
+        viewPagerAdapter.addFragment(new ATMFragment(), Utilities.ATMS);
+        viewPagerAdapter.addFragment(new PetrolPumpFragment(), Utilities.GAS_STATION);
 
         viewPager.setAdapter(viewPagerAdapter);
     }
@@ -67,7 +65,6 @@ public class MainFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override

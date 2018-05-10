@@ -1,12 +1,18 @@
 package com.example.sushantpaygude.finalproject.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.sushantpaygude.finalproject.R;
+import com.example.sushantpaygude.finalproject.Utils.TinyDB;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -18,8 +24,10 @@ import com.google.android.gms.tasks.Task;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private SignInButton signInButton;
+    private ImageButton signInButton, newUserButton, loginButton;
     private GoogleSignInClient googleSignInClient;
+    private TinyDB tinyDB;
+    private EditText userID, userPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +40,17 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        newUserButton = findViewById(R.id.buttonCreateNewUser);
+        loginButton = findViewById(R.id.loginButton);
+        userID = findViewById(R.id.editTextID);
+        userPassword = findViewById(R.id.editTextPassword);
+
+
         signInButton.setOnClickListener(this);
+        newUserButton.setOnClickListener(this);
+        loginButton.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -56,6 +73,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     startActivityForResult(signInIntent, Utilities.RC_SIGN_IN);
                 }
 
+                break;
+            case R.id.buttonCreateNewUser:
+                Intent newUserIntent = new Intent(this, NewUserActivity.class);
+                startActivity(newUserIntent);
+                break;
+            case R.id.loginButton:
+                String userID_ = userID.getText().toString();
+                String userPassword_ = userPassword.getText().toString();
                 break;
         }
     }
@@ -92,5 +117,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         //intent.putExtra(Utilities.GOOGLESIGNINCLIENT, googleSignInClient);
         startActivity(intent);
 
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Name", "Harneet");
+        editor.apply();
     }
 }

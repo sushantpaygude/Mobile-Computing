@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.sushantpaygude.finalproject.Fragments.MainFragment;
-import com.example.sushantpaygude.finalproject.Fragments.RestaurantsFragment;
 import com.example.sushantpaygude.finalproject.R;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -86,6 +85,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 signOut();
                 break;
             case R.id.nav_todo:
+                Intent intent = new Intent(this, ToDoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_account:
                 break;

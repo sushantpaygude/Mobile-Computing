@@ -88,7 +88,7 @@ public class EventsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         eventsrecyclerView = view.findViewById(R.id.eventsRecyclerView);
-        eventsrecyclerView.setLayoutManager(linearLayoutManager);
+        eventsrecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(eventsrecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         eventsrecyclerView.addItemDecoration(dividerItemDecoration);
@@ -96,15 +96,18 @@ public class EventsFragment extends Fragment {
         eventRecyclerViewAdapter = new EventRecyclerViewAdapter(ticketMasterEventsArrayList,getActivity());
 
         eventsrecyclerView.setAdapter(eventRecyclerViewAdapter);
-        eventsrecyclerView.setOnScrollListener(new EndlessScrollListener(linearLayoutManager) {
-            @Override
-            public void onLoadMore(int current_page) {
-                loadMoreItems(current_page);
-            }
-        });
+        setScrollListener(eventsrecyclerView);
+//        eventsrecyclerView.setOnScrollListener(new EndlessScrollListener(linearLayoutManager) {
+//            @Override
+//            public void onLoadMore(int current_page) {
+//                loadMoreItems(current_page);
+//            }
+//        });
+
 
 
         getEvents(startLatitude,startLongitude,10,0);
+
     }
 
     protected void loadMoreItems(final int pageNo) {
@@ -114,10 +117,11 @@ public class EventsFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                getEvents(39.260700,-76.699453,10,pageNo);
+                getEvents(39.260700, -76.699453, 10, pageNo);
             }
         }, 1000);
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -130,8 +134,16 @@ public class EventsFragment extends Fragment {
     }
 
 
-    private String getGeoHash(double latitude,double longitude)
-    {
+    private void setScrollListener(RecyclerView recyclerView) {
+        recyclerView.setOnScrollListener(new EndlessScrollListener((LinearLayoutManager) recyclerView.getLayoutManager()) {
+            @Override
+            public void onLoadMore(int current_page) {
+                loadMoreItems(current_page);
+            }
+        });
+    }
+
+    private String getGeoHash(double latitude, double longitude) {
         Location location = new Location("geohash");
 
         location.setLatitude(latitude);
@@ -142,12 +154,12 @@ public class EventsFragment extends Fragment {
     }
 
     //Provide radius on miles
-    private void getEvents(double latitude,double longitude, int radius, int currentPage) {
+    private void getEvents(double latitude, double longitude, int radius, int currentPage) {
 
-        String geoHash = getGeoHash(latitude,longitude);
+        String geoHash = getGeoHash(latitude, longitude);
 
         String url = String.format(Utilities.TICKETMASTER_GET_EVENTS_BY_LOCATION,
-                        geoHash, String.valueOf(radius),Utilities.TICKETMASTER_API_KEY,String.valueOf(currentPage));
+                geoHash, String.valueOf(radius), Utilities.TICKETMASTER_API_KEY, String.valueOf(currentPage));
 
         //String url = "https://app.ticketmaster.com/discovery/v2/events.json?geoPoint=dqcrq&radius=10&apikey=xci6BKuaudQC0tMXRUZnvFSIF6trOVfd";
         Log.i("URL", ":" + url);
@@ -159,9 +171,9 @@ public class EventsFragment extends Fragment {
 
                 //currentPage = ticketMasterResponse.getPage().getNumber();
 
-                Log.i("Page","Pagesize:" + ticketMasterResponse.getPage().getSize());
-                Log.i("Page","TotalElements:" + ticketMasterResponse.getPage().getTotalElements());
-                Log.i("Page","TotalPage:" + ticketMasterResponse.getPage().getTotalPages());
+                Log.i("Page", "Pagesize:" + ticketMasterResponse.getPage().getSize());
+                Log.i("Page", "TotalElements:" + ticketMasterResponse.getPage().getTotalElements());
+                Log.i("Page", "TotalPage:" + ticketMasterResponse.getPage().getTotalPages());
                 /*page(object) - information about current page in data source
                 size(number) - size of page.
                 totalElements(number) - total number of available elements in server
