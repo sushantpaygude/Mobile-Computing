@@ -85,6 +85,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 signOut();
                 break;
             case R.id.nav_todo:
+                Intent intent = new Intent(this, ToDoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_account:
                 break;

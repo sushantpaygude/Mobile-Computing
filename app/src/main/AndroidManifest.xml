@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Activities.MainActivity"></activity>
-
         <activity android:name=".Activities.NavigationDrawerActivity">
+
+        </activity>
+        <activity android:name=".Activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,11 +31,7 @@
 
 
 
-        <activity android:name=".Activities.SignInActivity">
-
-
-
-        </activity>
+        <activity android:name=".Activities.ToDoActivity"></activity>
     </application>
 
 </manifest>

@@ -78,7 +78,7 @@ public class EventsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         eventsrecyclerView = view.findViewById(R.id.eventsRecyclerView);
-        eventsrecyclerView.setLayoutManager(linearLayoutManager);
+        eventsrecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(eventsrecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         eventsrecyclerView.addItemDecoration(dividerItemDecoration);
@@ -86,12 +86,13 @@ public class EventsFragment extends Fragment {
         eventRecyclerViewAdapter = new EventRecyclerViewAdapter(ticketMasterEventsArrayList);
 
         eventsrecyclerView.setAdapter(eventRecyclerViewAdapter);
-        eventsrecyclerView.setOnScrollListener(new EndlessScrollListener(linearLayoutManager) {
-            @Override
-            public void onLoadMore(int current_page) {
-                loadMoreItems(current_page);
-            }
-        });
+        setScrollListener(eventsrecyclerView);
+//        eventsrecyclerView.setOnScrollListener(new EndlessScrollListener(linearLayoutManager) {
+//            @Override
+//            public void onLoadMore(int current_page) {
+//                loadMoreItems(current_page);
+//            }
+//        });
 
 
         getEvents(39.260700, -76.699453, 10, 0);
@@ -120,6 +121,15 @@ public class EventsFragment extends Fragment {
         super.onDetach();
     }
 
+
+    private void setScrollListener(RecyclerView recyclerView) {
+        recyclerView.setOnScrollListener(new EndlessScrollListener((LinearLayoutManager) recyclerView.getLayoutManager()) {
+            @Override
+            public void onLoadMore(int current_page) {
+                loadMoreItems(current_page);
+            }
+        });
+    }
 
     private String getGeoHash(double latitude, double longitude) {
         Location location = new Location("geohash");
