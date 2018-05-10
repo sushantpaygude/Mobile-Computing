@@ -75,6 +75,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.buttonCreateNewUser:
+                Intent newUserIntent = new Intent(this, NewUserActivity.class);
+                startActivity(newUserIntent);
                 break;
             case R.id.loginButton:
                 String userID_ = userID.getText().toString();
