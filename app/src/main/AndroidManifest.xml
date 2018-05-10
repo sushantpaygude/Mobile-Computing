@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Activities.MainActivity" />
-        <activity android:name=".Activities.NavigationDrawerActivity">
-
-        </activity>
+        <activity android:name=".Activities.NavigationDrawerActivity"></activity>
         <activity android:name=".Activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.ToDoActivity" />
-        <activity android:name=".Activities.NewUserActivity"></activity>
+        <activity android:name=".Activities.NewUserActivity" />
+        <activity android:name=".Activities.UserProfileActivity"></activity>
     </application>
 
 </manifest>
