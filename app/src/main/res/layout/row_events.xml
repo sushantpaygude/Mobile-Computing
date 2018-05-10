@@ -7,29 +7,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageEvent"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_weight="3"
-            android:padding="4dp" />
+            android:padding="3dp" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/textEventTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="4dp"
                 android:text="Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
                 android:maxLines="2"
                 android:textStyle="bold"/>
 
@@ -37,10 +37,10 @@
                 android:id="@+id/textEventAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="4dp"
                 android:text="Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -66,6 +66,15 @@
                 android:id="@+id/textEventTime"/>
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonLocationPin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="55dp"
+            android:background="@color/white"
+            android:src="@drawable/redpinicon" />
 
 
 
