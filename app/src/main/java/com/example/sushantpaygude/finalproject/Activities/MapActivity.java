@@ -132,7 +132,6 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
                 getRoute(originPosition, destinationPosition);
             }
         });
-
         mapView.onCreate(savedInstanceState);
     }
 
