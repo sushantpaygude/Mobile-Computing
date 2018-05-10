@@ -1,13 +1,13 @@
 package com.example.sushantpaygude.finalproject.Activities;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.sushantpaygude.finalproject.R;
-
 
 public class NewUserActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,7 +17,7 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_account);
+        setContentView(R.layout.activity_new_user);
 
         userName = findViewById(R.id.editTextName);
         userEmail = findViewById(R.id.editTextEmail);
@@ -25,13 +25,16 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
         getStartedButton = findViewById(R.id.buttonGetStarted);
         loginButton = findViewById(R.id.loginButton);
 
-
+        getStartedButton.setOnClickListener(this);
+        loginButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonGetStarted:
+                Intent navigationDrawerIntent = new Intent(this, NavigationDrawerActivity.class);
+                startActivity(navigationDrawerIntent);
                 break;
             case R.id.loginButton:
                 break;

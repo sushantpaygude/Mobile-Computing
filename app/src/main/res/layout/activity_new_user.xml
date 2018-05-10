@@ -31,9 +31,9 @@
         android:layout_marginLeft="55dp"
         android:layout_marginRight="55dp"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorOrange"
         android:hint="Name"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorOrange" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -43,10 +43,10 @@
         android:layout_marginLeft="55dp"
         android:layout_marginRight="55dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorOrange"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorOrange" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -56,10 +56,10 @@
         android:layout_marginLeft="55dp"
         android:layout_marginRight="55dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorOrange"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorOrange" />
 
     <ImageButton
         android:id="@+id/buttonGetStarted"
@@ -78,7 +78,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonSendIDPassword"
+        android:layout_below="@id/buttonGetStarted"
         android:layout_centerHorizontal="true">
 
 
@@ -89,7 +89,7 @@
             android:text="Already have an account?"
             android:textStyle="bold" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

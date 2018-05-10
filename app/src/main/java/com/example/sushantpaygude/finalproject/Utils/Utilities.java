@@ -59,6 +59,10 @@ public class Utilities {
 
     //"https://app.ticketmaster.com/discovery/v2/events.json?geoPoint=dqcrq&radius=10&apikey=xci6BKuaudQC0tMXRUZnvFSIF6trOVfd"
 
+
+    //MapBox API Key
+    public static String MAPBOX_API_KEY = "pk.eyJ1IjoicGFua2FqdGVrd2FuaSIsImEiOiJjamd5Yml2dmszNHd3MnltbGQ4b2hqZmo5In0.LxtbuVhmkaj1QI8RaGiVaQ";
+
     //GOOGLE PLACES API IDS AND URLS
     public static String ATMS = "ATMS/Banks";
     public static String GAS_STATION = "Gas Station";
@@ -69,6 +73,7 @@ public class Utilities {
 
 
     public static String TO_DO_LIST_STRING = "TO_DO_LIST_STRING";
+
 
 
 }
