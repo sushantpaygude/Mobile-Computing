@@ -54,6 +54,9 @@ public class EventsFragment extends Fragment {
     private String TAG = "EventsFragment";
     private LinearLayoutManager linearLayoutManager;
 
+    private double startLatitude;
+    private double startLongitude;
+
     public EventsFragment() {
         // Required empty public constructor
     }
@@ -63,6 +66,13 @@ public class EventsFragment extends Fragment {
         requestQueue = VolleySingleton.getInstance(getContext()).getRequestQueue();
         linearLayoutManager = new LinearLayoutManager(getContext());
         super.onCreate(savedInstanceState);
+        startLatitude = 39.260700;
+        startLongitude = -76.699453;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -83,7 +93,7 @@ public class EventsFragment extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(eventsrecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         eventsrecyclerView.addItemDecoration(dividerItemDecoration);
 
-        eventRecyclerViewAdapter = new EventRecyclerViewAdapter(ticketMasterEventsArrayList);
+        eventRecyclerViewAdapter = new EventRecyclerViewAdapter(ticketMasterEventsArrayList,getActivity());
 
         eventsrecyclerView.setAdapter(eventRecyclerViewAdapter);
         eventsrecyclerView.setOnScrollListener(new EndlessScrollListener(linearLayoutManager) {
@@ -94,7 +104,7 @@ public class EventsFragment extends Fragment {
         });
 
 
-        getEvents(39.260700,-76.699453,10,0);
+        getEvents(startLatitude,startLongitude,10,0);
     }
 
     protected void loadMoreItems(final int pageNo) {

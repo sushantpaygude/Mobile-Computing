@@ -16,8 +16,8 @@ public class Utilities {
     //YELP API IDS AND URLS
     public static String YELPAuthorization = "Authorization";
 
-    public static String YELP_CLIENTID = "";
-    public static String YELP_API_KEY = "";
+    public static String YELP_CLIENTID = "RgcCYFc4FYIUY_bGRgmcTQ";
+    public static String YELP_API_KEY = "Bearer PasfAv9a_1h1ig_o6imYqFnyJJ1oiSiXkdPRx3sdmXUQrA55-5NAf2PyZIL_zy3Wml8SseXG1NpUS3vdA9Ev9q4dUgwsyecHBXwwhlaWE8atMIgMVK6BQynOuCbZWnYx";
 
     public static String YELP_SEARCH_BASE_STRING = "https://api.yelp.com/v3/businesses/search?";
 
@@ -43,7 +43,7 @@ public class Utilities {
 
     //TICKETMASTERS API IDS AND URLS
     public static String TicketMasterAuthorization = "Authorization";
-    public static String TICKETMASTER_API_KEY = "";
+    public static String TICKETMASTER_API_KEY = "xci6BKuaudQC0tMXRUZnvFSIF6trOVfd";
     public static String TICKETMASTER_SEARCH_BASE_STRING = "https://app.ticketmaster.com/discovery/v2/events.json?";
     public static String TICKETMASTER_GET_EVENTS_BY_LOCATION = TICKETMASTER_SEARCH_BASE_STRING + "geoPoint=%s&radius=%s&apikey=%s&page=%s";
     public static String EVENTS = "Events";
@@ -56,4 +56,7 @@ public class Utilities {
     }
 
     //"https://app.ticketmaster.com/discovery/v2/events.json?geoPoint=dqcrq&radius=10&apikey=xci6BKuaudQC0tMXRUZnvFSIF6trOVfd"
+
+    //MapBox API Key
+    public static String MAPBOX_API_KEY = "pk.eyJ1IjoicGFua2FqdGVrd2FuaSIsImEiOiJjamd5Yml2dmszNHd3MnltbGQ4b2hqZmo5In0.LxtbuVhmkaj1QI8RaGiVaQ";
 }
