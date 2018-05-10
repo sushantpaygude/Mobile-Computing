@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.sushantpaygude.finalproject.R;
@@ -21,13 +22,12 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import java.util.ArrayList;
-
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton signInButton;
+    private ImageButton signInButton, newUserButton, loginButton;
     private GoogleSignInClient googleSignInClient;
     private TinyDB tinyDB;
+    private EditText userID, userPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,17 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         signInButton = findViewById(R.id.sign_in_button);
-//        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        newUserButton = findViewById(R.id.buttonCreateNewUser);
+        loginButton = findViewById(R.id.loginButton);
+        userID = findViewById(R.id.editTextID);
+        userPassword = findViewById(R.id.editTextPassword);
+
+
         signInButton.setOnClickListener(this);
-        tinyDB = new TinyDB(getApplicationContext());
-        tinyDB.putListString(Utilities.TO_DO_LIST_STRING, new ArrayList<String>());
+        newUserButton.setOnClickListener(this);
+        loginButton.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -66,6 +73,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     startActivityForResult(signInIntent, Utilities.RC_SIGN_IN);
                 }
 
+                break;
+            case R.id.buttonCreateNewUser:
+                break;
+            case R.id.loginButton:
+                String userID_ = userID.getText().toString();
+                String userPassword_ = userPassword.getText().toString();
                 break;
         }
     }
