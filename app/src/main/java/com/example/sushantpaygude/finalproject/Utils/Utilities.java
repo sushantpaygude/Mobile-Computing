@@ -68,4 +68,7 @@ public class Utilities {
     public static String GET_GAS_STATION_BY_LOCATION = GOOGLEPLACES_BASE_URL + "location=%s,%s&radius=1500&type=gas_station&key=%s&pagetoken=%s";
 
 
+    public static String TO_DO_LIST_STRING = "TO_DO_LIST_STRING";
+
+
 }

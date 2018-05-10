@@ -1,6 +1,8 @@
 package com.example.sushantpaygude.finalproject.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.sushantpaygude.finalproject.R;
+import com.example.sushantpaygude.finalproject.Utils.TinyDB;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -18,10 +21,13 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton signInButton;
     private GoogleSignInClient googleSignInClient;
+    private TinyDB tinyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         signInButton = findViewById(R.id.sign_in_button);
 //        signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setOnClickListener(this);
+        tinyDB = new TinyDB(getApplicationContext());
+        tinyDB.putListString(Utilities.TO_DO_LIST_STRING, new ArrayList<String>());
     }
 
     @Override
@@ -94,5 +102,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         //intent.putExtra(Utilities.GOOGLESIGNINCLIENT, googleSignInClient);
         startActivity(intent);
 
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Name", "Harneet");
+        editor.apply();
     }
 }
