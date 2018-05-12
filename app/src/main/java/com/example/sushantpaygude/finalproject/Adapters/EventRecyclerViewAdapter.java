@@ -60,8 +60,8 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
                 intent.putExtra("EventLatitude", location.getLatitude());
                 intent.putExtra("EventLongitude", location.getLongitude());
                 //TO DO: Use Location Service to get Current Location of User
-                intent.putExtra("UserLatitude", String.valueOf(39.260700));
-                intent.putExtra("UserLongitude", String.valueOf(-76.699453));
+                intent.putExtra("UserLatitude", String.valueOf(39.253366));
+                intent.putExtra("UserLongitude", String.valueOf(-76.714099));
                 intent.putExtra("Name", event.getName());
                 mcontext.startActivity(intent);
             }
