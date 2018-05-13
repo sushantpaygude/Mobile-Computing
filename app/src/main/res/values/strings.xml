@@ -3,6 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <string name="google_api">https://maps.googleapis.com/maps/api/place/textsearch/json?</string>
+    <string name="key">AIzaSyBU3kCs7-rDInj4nnvkYmfmglCHv31uRz4</string>
+    <string name="ip_address">http://130.85.252.86/</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

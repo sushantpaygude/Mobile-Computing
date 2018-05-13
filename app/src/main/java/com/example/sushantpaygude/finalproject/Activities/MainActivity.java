@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-
 import com.example.sushantpaygude.finalproject.Adapters.ViewPagerAdapter;
 import com.example.sushantpaygude.finalproject.Fragments.EventsFragment;
 import com.example.sushantpaygude.finalproject.Fragments.RestaurantsFragment;
@@ -34,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-
-
     private void setupViewPager(ViewPager viewPager)
     {
         viewPagerAdapter.addFragment(new RestaurantsFragment(), Utilities.RESTAURANTS);
@@ -44,5 +41,4 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(viewPagerAdapter);
     }
-
 }
