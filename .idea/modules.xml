@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Mobile-Computing.iml" filepath="$PROJECT_DIR$/Mobile-Computing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mobile-Computing-Checkout.iml" filepath="$PROJECT_DIR$/Mobile-Computing-Checkout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/android-geohash-master/library/library.iml" filepath="$PROJECT_DIR$/android-geohash-master/library/library.iml" />
     </modules>
