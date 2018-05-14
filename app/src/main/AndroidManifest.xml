@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sushantpaygude.finalproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Activities.MainActivity" />
-        <activity android:name=".Activities.NavigationDrawerActivity"></activity>
+        <activity android:name=".Activities.NavigationDrawerActivity" />
         <activity android:name=".Activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +25,11 @@
         </activity>
         <activity android:name=".Activities.ToDoActivity" />
         <activity android:name=".Activities.NewUserActivity" />
-        <activity android:name=".Activities.UserProfileActivity"></activity>
+        <activity android:name=".Activities.UserProfileActivity" />
+        <activity android:name=".Activities.MapActivity" />
+        <activity android:name=".Activities.UserChoosingPhotoActivity" android:theme="@style/Theme.AppCompat.Translucent">
+
+        </activity>
     </application>
 
 </manifest>

@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sushantpaygude.finalproject.Fragments.MainFragment;
@@ -22,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.squareup.picasso.Picasso;
 
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -40,7 +43,10 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setDisplayShowTitleEnabled(false);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
         navigationView.setNavigationItemSelectedListener(this);
         navigationHeader = navigationView.inflateHeaderView(R.layout.navigation_header);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
@@ -101,10 +107,11 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     private void inflateNavigationHeader(View navigationHeader, GoogleSignInAccount googleSignInAccount) {
 
         TextView textView = navigationHeader.findViewById(R.id.textUsername);
+        ImageView imageView = navigationHeader.findViewById(R.id.imageUser);
         textView.setText(googleSignInAccount.getDisplayName());
+        Picasso.get().load(googleSignInAccount.getPhotoUrl()).into(imageView);
 
     }
-
 
     private void signOut() {
         googleSignInClient.signOut()

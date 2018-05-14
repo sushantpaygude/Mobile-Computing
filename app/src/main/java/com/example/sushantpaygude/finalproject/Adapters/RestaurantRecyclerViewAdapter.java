@@ -44,6 +44,8 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
                 .load(business.getImageUrl())
                 .into(holder.imageRestaurant);
         holder.textRatings.setText(String.valueOf(business.getRating()));
+
+
     }
 
     @Override

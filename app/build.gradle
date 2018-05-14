@@ -5,7 +5,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.sushantpaygude.finalproject"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -16,6 +16,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -33,5 +37,18 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation project(':library')
+
+
+    implementation('com.mapbox.mapboxsdk:mapbox-android-sdk') {
+        transitive = true
+    }
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.12.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-telemetry'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer'
+    implementation('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.12.0') {
+        transitive = true
+    }
     implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
 }

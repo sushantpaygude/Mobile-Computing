@@ -119,10 +119,4 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void setupSharedPreferences() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("Name", "Harneet");
-        editor.apply();
-    }
 }

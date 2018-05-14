@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.UserChoosingPhotoActivity">
+
+    <ImageButton
+        android:id="@+id/imageButtonTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/imageButtonChoosePhoto"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/roundedbuttononly"
+        android:src="@drawable/takephotobutton"/>
+
+    <ImageButton
+        android:id="@+id/imageButtonChoosePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/imageButtonCancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/roundedbuttononly"
+        android:src="@drawable/choosephotobutton"/>
+
+    <ImageButton
+        android:id="@+id/imageButtonCancel"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="73dp"
+        android:background="@drawable/roundedbuttononly"
+        android:src="@drawable/cancelbutton"/>
+
+</RelativeLayout>
