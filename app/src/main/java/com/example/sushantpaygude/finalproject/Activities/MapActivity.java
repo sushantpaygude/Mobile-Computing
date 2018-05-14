@@ -68,7 +68,7 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
     private LocationLayerPlugin locationPlugin;
     private LocationEngine locationEngine;
     private Location originLocation;
-    private Location currentLocation;
+    //private Location currentLocation;
     private Location destinationLocation;
     private Marker destinationMarker;
     private LatLng destinationCoordinates;
@@ -84,6 +84,7 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
     private Button navigationButton;
 
     @Override
+    @SuppressWarnings({"MissingPermission"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, Utilities.MAPBOX_API_KEY);
@@ -139,32 +140,34 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
                 destinationMarker = map.addMarker(new MarkerOptions()
                         .position(destinationCoordinates));
 
-                navigationButton.setEnabled(true);
-                navigationButton.setBackgroundResource(R.color.colorOrange);
                 destinationPosition = Point.fromLngLat(destinationCoordinates.getLongitude(),
                         destinationCoordinates.getLatitude());
                 originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
                 getRoute(originPosition, destinationPosition);
-            }
-        });
 
-        navigationButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Point origin = originPosition;
-                Point destination = destinationPosition;
-                // Pass in your Amazon Polly pool id for speech synthesis using Amazon Polly
-                // Set to null to use the default Android speech synthesizer
-                String awsPoolId = null;
-                boolean simulateRoute = true;
-                NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                        .origin(origin)
-                        .destination(destination)
-                        .awsPoolId(awsPoolId)
-                        .shouldSimulateRoute(simulateRoute)
-                        .build();
 
-                // Call this method with Context from within an Activity
-                NavigationLauncher.startNavigation(MapActivity.this, options);
+                navigationButton.setEnabled(true);
+                navigationButton.setBackgroundResource(R.color.colorOrange);
+
+                navigationButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Point origin = originPosition;
+                        Point destination = destinationPosition;
+                        // Pass in your Amazon Polly pool id for speech synthesis using Amazon Polly
+                        // Set to null to use the default Android speech synthesizer
+                        String awsPoolId = null;
+                        boolean simulateRoute = true;
+                        NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                                .origin(origin)
+                                .destination(destination)
+                                .awsPoolId(awsPoolId)
+                                .shouldSimulateRoute(simulateRoute)
+                                .build();
+
+                        // Call this method with Context from within an Activity
+                        NavigationLauncher.startNavigation(MapActivity.this, options);
+                    }
+                });
             }
         });
     }
@@ -186,6 +189,7 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
 
     @SuppressWarnings({"MissingPermission"})
     private void initializeLocationEngine() {
+
         locationEngine = new LostLocationEngine(MapActivity.this);
         locationEngine.setPriority(LocationEnginePriority.HIGH_ACCURACY);
         locationEngine.activate();
@@ -193,11 +197,14 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
 //        setCameraPosition(originLocation);
 
         Location lastLocation = locationEngine.getLastLocation();
-        if (lastLocation != null) {
-            currentLocation = lastLocation;
-            setCameraPosition(lastLocation);
-        } else {
+        if (lastLocation == null) {
             locationEngine.addLocationEngineListener(this);
+        }
+
+        lastLocation = locationEngine.getLastLocation();
+        if(lastLocation != null) {
+            originLocation = lastLocation;
+            setCameraPosition(lastLocation);
         }
     }
 
@@ -279,7 +286,7 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
     @Override
     public void onLocationChanged(Location location) {
         if (location != null) {
-            currentLocation = location;
+            originLocation = location;
             setCameraPosition(location);
             //locationEngine.removeLocationEngineListener(this);
         }
