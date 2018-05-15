@@ -114,7 +114,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 });
             }
         };
-        timer.schedule(task, 0, 5*60*1000); //This executes the UploadLocAsync task every 5 minutes
+        timer.schedule(task, 0, 5 * 60 * 1000); //This executes the UploadLocAsync task every 5 minutes
     }
 
     @Override

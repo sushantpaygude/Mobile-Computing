@@ -83,7 +83,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:background="@drawable/roundedbuttononly"
-        android:src="@drawable/logingooglebutton"/>
+        android:src="@drawable/logingooglebutton" />
 
 
     <ImageButton

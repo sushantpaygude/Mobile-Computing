@@ -37,8 +37,9 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // Instance ID token to your app server.
         sendRegistrationToServer(refreshedToken);
     }
-    private void sendRegistrationToServer(String token){
-        new UploadTokenAsync().execute("Intekhab",token);
+
+    private void sendRegistrationToServer(String token) {
+        new UploadTokenAsync().execute("Intekhab", token);
     }
 
     private class UploadTokenAsync extends AsyncTask<String, Integer, String> {
@@ -56,13 +57,12 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if(s.equals("Success")) {
-                Log.i("UploadTokenAsync","Successfully updated Token");
+            if (s.equals("Success")) {
+                Log.i("UploadTokenAsync", "Successfully updated Token");
                 Toast.makeText(getApplicationContext(), "Successfully updated Token!",
                         Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Log.i("UploadTokenAsync","Failed to update Token");
+            } else {
+                Log.i("UploadTokenAsync", "Failed to update Token");
                 Toast.makeText(getApplicationContext(), "Failed to update Token!",
                         Toast.LENGTH_SHORT).show();
             }
@@ -79,8 +79,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
             HttpURLConnection conn = null;
             String response = "";
 
-            try
-            {
+            try {
                 URL url = new URL(login_url);
                 conn = (HttpURLConnection) url.openConnection();
 
@@ -100,27 +99,23 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
                 int responseCode = conn.getResponseCode();
                 String line = "";
                 StringBuilder builder = new StringBuilder();
-                if(responseCode == HttpURLConnection.HTTP_OK){
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader b_reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    while ((line = b_reader.readLine())!= null){
+                    while ((line = b_reader.readLine()) != null) {
                         builder.append(line);
                     }
                     b_reader.close();
                     JSONObject jsonObject = new JSONObject(builder.toString());
-                    Log.i("Login","sent"+jsonObject);
+                    Log.i("Login", "sent" + jsonObject);
                     int result = Integer.parseInt(jsonObject.getString("Result"));
-                    if(result == 1)
-                    {
+                    if (result == 1) {
                         response = "Success";
                     }
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }
-            finally {
-                if(conn!=null){
+            } finally {
+                if (conn != null) {
                     conn.disconnect();
                 }
             }
