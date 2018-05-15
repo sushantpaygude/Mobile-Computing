@@ -53,6 +53,7 @@ import android.util.Log;
 // classes needed to launch navigation UI
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 
@@ -147,7 +148,6 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
 
 
                 navigationButton.setEnabled(true);
-                navigationButton.setBackgroundResource(R.color.colorOrange);
 
                 navigationButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
