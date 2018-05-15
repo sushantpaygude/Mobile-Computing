@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sushantpaygude.finalproject.Fragments.MainFragment;
+import com.example.sushantpaygude.finalproject.POJOs.ServerPojo.ServerRegistration;
 import com.example.sushantpaygude.finalproject.R;
 import com.example.sushantpaygude.finalproject.Utils.TinyDB;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
@@ -94,7 +95,14 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         if (extras != null) {
             GoogleSignInAccount googleSignInAccount = extras.getParcelable(Utilities.GOOGLESIGNINACCOUNT);
             if (googleSignInAccount != null) {
-                inflateNavigationHeader(navigationHeader, googleSignInAccount);
+                inflateNavigationHeader(navigationHeader, googleSignInAccount, null);
+            }
+
+            ServerRegistration serverRegistration = (ServerRegistration) extras.getSerializable(Utilities.SERVERSIGNINACCOUNT);
+
+            if (serverRegistration != null) {
+                inflateNavigationHeader(navigationHeader, null, serverRegistration);
+
             }
         }
 
@@ -157,12 +165,17 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         return false;
     }
 
-    private void inflateNavigationHeader(View navigationHeader, GoogleSignInAccount googleSignInAccount) {
-
+    private void inflateNavigationHeader(View navigationHeader, GoogleSignInAccount googleSignInAccount, ServerRegistration serverRegistration) {
         TextView textView = navigationHeader.findViewById(R.id.textUsername);
         ImageView imageView = navigationHeader.findViewById(R.id.imageUser);
-        textView.setText(googleSignInAccount.getDisplayName());
-        Picasso.get().load(googleSignInAccount.getPhotoUrl()).into(imageView);
+        if (googleSignInAccount != null) {
+
+            textView.setText(googleSignInAccount.getDisplayName());
+            Picasso.get().load(googleSignInAccount.getPhotoUrl()).into(imageView);
+        } else if (serverRegistration != null) {
+            textView.setText(serverRegistration.getUsers().getUser());
+        }
+
 
     }
 

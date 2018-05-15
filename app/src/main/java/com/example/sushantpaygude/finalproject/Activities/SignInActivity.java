@@ -11,9 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.sushantpaygude.finalproject.POJOs.ServerPojo.ServerRegistration;
 import com.example.sushantpaygude.finalproject.R;
 import com.example.sushantpaygude.finalproject.Utils.TinyDB;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
+import com.example.sushantpaygude.finalproject.Utils.VolleySingleton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +29,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +40,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private GoogleSignInClient googleSignInClient;
     private TinyDB tinyDB;
     private EditText userID, userPassword;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +62,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         signInButton.setOnClickListener(this);
         newUserButton.setOnClickListener(this);
         loginButton.setOnClickListener(this);
-
+        requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
     }
 
@@ -81,6 +94,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.loginButton:
                 String userID_ = userID.getText().toString();
                 String userPassword_ = userPassword.getText().toString();
+                loginfromServer();
                 break;
         }
     }
@@ -117,6 +131,42 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         //intent.putExtra(Utilities.GOOGLESIGNINCLIENT, googleSignInClient);
         startActivity(intent);
 
+    }
+
+
+    private void loginfromServer() {
+
+        StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, Utilities.REGISTRATION_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                ServerRegistration serverRegistration = new Gson().fromJson(response, ServerRegistration.class);
+                if (serverRegistration.getUsers().getSuccess() == 1) {
+                    Intent intent = new Intent(getApplicationContext(), NavigationDrawerActivity.class);
+                    intent.putExtra(Utilities.SERVERSIGNINACCOUNT, serverRegistration);
+                    startActivity(intent);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", userID.getText().toString());
+                params.put("password", userPassword.getText().toString());
+                params.put("action", "login");
+                return params;
+                //return super.getParams();
+            }
+        };
+
+
+        requestQueue.add(jsonObjectRequest);
     }
 
 }

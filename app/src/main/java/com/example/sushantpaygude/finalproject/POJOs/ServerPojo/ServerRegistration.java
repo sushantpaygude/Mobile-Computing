@@ -4,7 +4,9 @@ package com.example.sushantpaygude.finalproject.POJOs.ServerPojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ServerRegistration {
+import java.io.Serializable;
+
+public class ServerRegistration implements Serializable {
 
     @SerializedName("users")
     @Expose
