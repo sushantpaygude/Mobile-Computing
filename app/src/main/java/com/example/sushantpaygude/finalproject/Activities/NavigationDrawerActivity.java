@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.sushantpaygude.finalproject.Fragments.MainFragment;
 import com.example.sushantpaygude.finalproject.R;
+import com.example.sushantpaygude.finalproject.Utils.TinyDB;
 import com.example.sushantpaygude.finalproject.Utils.Utilities;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -39,6 +40,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -52,6 +54,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -65,6 +68,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     private LocationService my_loc_service;
     Boolean mBound = false;
     private double[] mylocation = new double[2];
+    TinyDB tinyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         navigationView.setNavigationItemSelectedListener(this);
         navigationHeader = navigationView.inflateHeaderView(R.layout.navigation_header);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+        tinyDB = new TinyDB(getApplicationContext());
 
         Bundle extras = getIntent().getExtras();
 
@@ -268,7 +273,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     mylocation = my_loc_service.getlocation();
                 }
             }
-
+            ArrayList<String> todoArrayList = tinyDB.getListString(Utilities.TO_DO_LIST_STRING);
+            String todoJson = new Gson().toJson(todoArrayList);
             String api_url = getResources().getString(R.string.google_api);
             String parameters = "";
             parameters += "location=" + mylocation[0] + "," + mylocation[1] +
