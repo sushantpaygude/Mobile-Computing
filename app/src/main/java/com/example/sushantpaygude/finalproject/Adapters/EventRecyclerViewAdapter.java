@@ -2,6 +2,7 @@ package com.example.sushantpaygude.finalproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by pankaj on 4/28/18.
  */
@@ -26,10 +29,12 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
     private ArrayList<Event> ticketMasterEventArrayList;
     private Context mcontext;
+    private SharedPreferences shPref;
 
     public EventRecyclerViewAdapter(ArrayList<Event> ticketMasterEventArrayList, Context context) {
         this.ticketMasterEventArrayList = ticketMasterEventArrayList;
         this.mcontext = context;
+        shPref = mcontext.getSharedPreferences("Location", MODE_PRIVATE);
     }
 
     @Override
@@ -51,16 +56,23 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         holder.textEventDate.setText("Date: "+event.getDates().getStart().getLocalDate());
         holder.textEventTime.setText("Time: "+event.getDates().getStart().getLocalTime());
 
-        holder.EventRoute.setOnClickListener(v -> {
-            Intent intent = new Intent(mcontext, MapActivity.class);
-            Location location = event.getEmbedded().getVenues().get(0).getLocation();
-            intent.putExtra("EventLatitude", location.getLatitude());
-            intent.putExtra("EventLongitude", location.getLongitude());
-            //TO DO: Use Location Service to get Current Location of User
-            intent.putExtra("UserLatitude", String.valueOf(39.253366));
-            intent.putExtra("UserLongitude", String.valueOf(-76.714099));
-            intent.putExtra("Name", event.getName());
-            mcontext.startActivity(intent);
+        holder.EventRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mcontext, MapActivity.class);
+                Location location = event.getEmbedded().getVenues().get(0).getLocation();
+                intent.putExtra("EventLatitude", location.getLatitude());
+                intent.putExtra("EventLongitude", location.getLongitude());
+                //TO DO: Use Location Service to get Current Location of User
+//                intent.putExtra("UserLatitude", String.valueOf(39.253366));
+//                intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+                String lat = shPref.getString("Latitude","");
+                String longi = shPref.getString("Longitude","");
+                intent.putExtra("UserLatitude", lat);
+                intent.putExtra("UserLongitude", longi);
+                intent.putExtra("Name", event.getName());
+                mcontext.startActivity(intent);
+            }
         });
     }
 

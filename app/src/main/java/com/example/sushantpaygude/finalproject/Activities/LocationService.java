@@ -3,6 +3,7 @@ package com.example.sushantpaygude.finalproject.Activities;
 import android.Manifest;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -20,6 +21,7 @@ public class LocationService extends Service implements LocationListener{
     MyBinder binder;
     private double[] location_ = new double[2];
     private LocationManager locationManager;
+    private SharedPreferences.Editor editor;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -46,7 +48,18 @@ public class LocationService extends Service implements LocationListener{
         }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        editor = getSharedPreferences("Location", MODE_PRIVATE).edit();
+//        location_[0] = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
+//        location_[1] = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
+//        addToSharedPreference(location_);
         Log.d("OnCreate: ", "Location Service is Created.");
+    }
+
+    private void addToSharedPreference(double[] location)
+    {
+        editor.putString("Latitude",String.valueOf(location[0]));
+        editor.putString("Longitude",String.valueOf(location[1]));
+        editor.apply();
     }
 
     public class MyBinder extends Binder {
@@ -66,6 +79,7 @@ public class LocationService extends Service implements LocationListener{
         Log.d("In LocationService","locationchanged");
         location_[0] = location.getLatitude();
         location_[1] = location.getLongitude();
+        addToSharedPreference(location_);
     }
 
     @Override
