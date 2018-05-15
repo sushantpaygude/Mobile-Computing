@@ -25,8 +25,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         toolbar.setTitle("Account");
 
-        relativeLayout = findViewById(R.id.relativeLayoutUserProfile);
-
         uploadPicture = findViewById(R.id.buttonCameraIcon);
         uploadPicture.setOnClickListener(this);
 
