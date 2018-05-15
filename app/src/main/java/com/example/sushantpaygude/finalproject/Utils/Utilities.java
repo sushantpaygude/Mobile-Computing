@@ -39,7 +39,7 @@ public class Utilities {
 
 
     public static String GOOGLESIGNINACCOUNT = "GOOGLESIGNINACCOUNT";
-    public static String GOOGLESIGNINCLIENT = "GOOGLESIGNINACCOUNT";
+    public static String SERVERSIGNINACCOUNT = "SERVERSIGNINACCOUNT";
 
 
     //TICKETMASTERS API IDS AND URLS
