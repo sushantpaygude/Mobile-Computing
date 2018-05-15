@@ -75,5 +75,7 @@ public class Utilities {
     public static String TO_DO_LIST_STRING = "TO_DO_LIST_STRING";
 
 
+    public static String REGISTRATION_URL = "http://745d9c0f.ngrok.io/hug/hug.php";
+
 
 }
