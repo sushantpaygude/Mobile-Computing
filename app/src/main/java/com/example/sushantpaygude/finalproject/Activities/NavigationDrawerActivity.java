@@ -175,8 +175,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     @Override
     protected void onStart() {
         super.onStart();
-        Intent loc_intent = new Intent(getApplicationContext(),LocationService.class);
-        bindService(loc_intent,loc_service_conn,BIND_AUTO_CREATE);
+        Intent loc_intent = new Intent(getApplicationContext(), LocationService.class);
+        bindService(loc_intent, loc_service_conn, BIND_AUTO_CREATE);
 
 //        final Handler handler = new Handler();
 //        Timer timer = new Timer();
@@ -239,14 +239,11 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 JSONObject jsonObj = new JSONObject(s);
 
                 JSONArray places = jsonObj.getJSONArray("results");
-                Log.d("Places","list"+s);
+                Log.d("Places", "list" + s);
 
-                if(places.length()==0)
-                {
+                if (places.length() == 0) {
 
-                }
-                else
-                {
+                } else {
                     JSONObject my_place = places.getJSONObject(0);
                     String place_name = my_place.getString("name");
                     String place_address = my_place.getString("formatted_address");
@@ -254,11 +251,9 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     new GetNotifyAsync().execute(place_name, place_address);
                 }
 
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
 
         }
@@ -266,7 +261,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         @Override
         protected String doInBackground(String... params) {
 
-            if(mBound) {
+            if (mBound) {
                 if (my_loc_service != null) {
                     mylocation = my_loc_service.getlocation();
                 }
@@ -274,7 +269,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
             String api_url = getResources().getString(R.string.google_api);
             String parameters = "";
-            parameters += "location=" + mylocation[0] + "," + mylocation[1]+
+            parameters += "location=" + mylocation[0] + "," + mylocation[1] +
                     "&radius=1500&type=store&query=screwdriver&key=" + getResources().getString(R.string.key);
             StringBuilder url_builder = new StringBuilder();
             url_builder.append(api_url);
@@ -283,8 +278,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             HttpURLConnection conn = null;
             String response = "";
 
-            try
-            {
+            try {
                 URL url = new URL(login_url);
                 conn = (HttpURLConnection) url.openConnection();
 
@@ -305,9 +299,9 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 int responseCode = conn.getResponseCode();
                 String line = "";
                 StringBuilder builder = new StringBuilder();
-                if(responseCode == HttpURLConnection.HTTP_OK){
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader b_reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    while ((line = b_reader.readLine())!= null){
+                    while ((line = b_reader.readLine()) != null) {
                         builder.append(line);
                     }
                     b_reader.close();
@@ -315,13 +309,10 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     response = builder.toString();
                 }
 
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }
-            finally {
-                if(conn!=null){
+            } finally {
+                if (conn != null) {
                     conn.disconnect();
                 }
             }
@@ -344,12 +335,11 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if(s.equals("Success")) {
-                Toast toast=Toast.makeText(getApplicationContext(),"Notification Sent Successfully!",Toast.LENGTH_SHORT);
+            if (s.equals("Success")) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Notification Sent Successfully!", Toast.LENGTH_SHORT);
                 toast.show();
-            }
-            else {
-                Toast toast=Toast.makeText(getApplicationContext(),"Notification Sending Failed!",Toast.LENGTH_SHORT);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Notification Sending Failed!", Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
@@ -365,8 +355,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             HttpURLConnection conn = null;
             String response = "";
 
-            try
-            {
+            try {
                 URL url = new URL(login_url);
                 conn = (HttpURLConnection) url.openConnection();
 
@@ -387,27 +376,23 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 int responseCode = conn.getResponseCode();
                 String line = "";
                 StringBuilder builder = new StringBuilder();
-                if(responseCode == HttpURLConnection.HTTP_OK){
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader b_reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    while ((line = b_reader.readLine())!= null){
+                    while ((line = b_reader.readLine()) != null) {
                         builder.append(line);
                     }
                     b_reader.close();
                     JSONObject jsonObject = new JSONObject(builder.toString());
-                    Log.i("Notification","Response"+jsonObject);
+                    Log.i("Notification", "Response" + jsonObject);
                     int result = Integer.parseInt(jsonObject.getString("success"));
-                    if(result > 0)
-                    {
+                    if (result > 0) {
                         response = "Success";
                     }
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }
-            finally {
-                if(conn!=null){
+            } finally {
+                if (conn != null) {
                     conn.disconnect();
                 }
             }
@@ -461,8 +446,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         Log.i("Callback", "okay....");
     }
 }

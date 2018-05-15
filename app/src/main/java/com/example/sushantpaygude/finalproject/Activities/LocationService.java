@@ -13,7 +13,7 @@ import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
-public class LocationService extends Service implements LocationListener{
+public class LocationService extends Service implements LocationListener {
     public LocationService() {
     }
 
@@ -50,20 +50,19 @@ public class LocationService extends Service implements LocationListener{
     }
 
     public class MyBinder extends Binder {
-        LocationService getService(){
+        LocationService getService() {
             return LocationService.this;
         }
     }
 
-    public double[] getlocation()
-    {
-        Log.d("In LocationService","returning");
+    public double[] getlocation() {
+        Log.d("In LocationService", "returning");
         return location_;
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("In LocationService","locationchanged");
+        Log.d("In LocationService", "locationchanged");
         location_[0] = location.getLatitude();
         location_[1] = location.getLongitude();
     }

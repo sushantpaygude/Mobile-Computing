@@ -42,7 +42,7 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
         todoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(todoRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         todoRecyclerView.addItemDecoration(dividerItemDecoration);
-        toDoRecyclerViewAdapter = new ToDoRecyclerViewAdapter(todoArrayList,this);
+        toDoRecyclerViewAdapter = new ToDoRecyclerViewAdapter(todoArrayList, this);
         todoRecyclerView.setAdapter(toDoRecyclerViewAdapter);
         textTodo = findViewById(R.id.textTodo);
         textTodo.addTextChangedListener(textWatcher);
