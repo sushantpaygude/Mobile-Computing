@@ -72,7 +72,7 @@ public class PetrolPumpFragment extends Fragment {
         atmRecyclerView.addItemDecoration(dividerItemDecoration);
 
 
-        atmRecyclerViewAdapter = new ATMRecyclerViewAdapter(ATMResponseArraylist);
+        atmRecyclerViewAdapter = new ATMRecyclerViewAdapter(ATMResponseArraylist, getActivity());
 
         atmRecyclerView.setAdapter(atmRecyclerViewAdapter);
         //atmRecyclerView.addOnScrollListener(onScrollListener);
