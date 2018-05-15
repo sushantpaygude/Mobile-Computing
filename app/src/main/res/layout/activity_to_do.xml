@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context="com.example.sushantpaygude.finalproject.Activities.ToDoActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorOrange" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,15 +20,20 @@
         <EditText
             android:id="@+id/textTodo"
             android:layout_width="300dp"
+            android:backgroundTint="@color/colorOrange"
+            android:textCursorDrawable="@color/colorOrange"
             android:layout_height="wrap_content"
             android:hint="@string/todolist" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonTodo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/textTodo"
-            android:text="@string/save" />
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/roundedbuttononly"
+            android:layout_toRightOf="@+id/textTodo"
+            android:src="@drawable/savebutton" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.sushantpaygude.finalproject.Adapters.ToDoRecyclerViewAdapter;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 public class ToDoActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView todoRecyclerView;
     private EditText textTodo;
-    private Button buttonTodo;
+    private ImageButton buttonTodo;
     TinyDB tinyDB;
     private ToDoRecyclerViewAdapter toDoRecyclerViewAdapter;
     //private HashMap<String, String> todoHashMap = new HashMap<String, String>();
@@ -62,6 +63,7 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
                 Log.e("ARRay", ":" + tinyDB.getListString(Utilities.TO_DO_LIST_STRING));
 
                 toDoRecyclerViewAdapter.notifyDataSetChanged();
+                textTodo.setText("");
                 break;
         }
     }
