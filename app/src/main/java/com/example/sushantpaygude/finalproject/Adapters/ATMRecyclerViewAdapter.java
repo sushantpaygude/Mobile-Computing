@@ -2,6 +2,7 @@ package com.example.sushantpaygude.finalproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by sushantpaygude on 5/8/18.
  */
@@ -28,11 +31,13 @@ public class ATMRecyclerViewAdapter extends RecyclerView.Adapter<ATMRecyclerView
 
     private ArrayList<Result> ATMResponseArrayList = new ArrayList<>();
     private Context mcontext;
+    private SharedPreferences shPref;
 
 
     public ATMRecyclerViewAdapter(ArrayList<Result> ATMResponseArrayList, Context context) {
         this.ATMResponseArrayList = ATMResponseArrayList;
         this.mcontext = context;
+        shPref = mcontext.getSharedPreferences("Location", MODE_PRIVATE);
     }
 
     @Override
@@ -60,8 +65,10 @@ public class ATMRecyclerViewAdapter extends RecyclerView.Adapter<ATMRecyclerView
                 intent.putExtra("EventLatitude", String.valueOf(location.getLat()));
                 intent.putExtra("EventLongitude", String.valueOf(location.getLng()));
                 //TO DO: Use Location Service to get Current Location of User
-                intent.putExtra("UserLatitude", String.valueOf(39.253366));
-                intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+                String lat = shPref.getString("Latitude","");
+                String longi = shPref.getString("Longitude","");
+                intent.putExtra("UserLatitude", lat);
+                intent.putExtra("UserLongitude", longi);
                 intent.putExtra("Name", result.getName());
                 mcontext.startActivity(intent);
             });

@@ -2,6 +2,7 @@ package com.example.sushantpaygude.finalproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by sushantpaygude on 4/19/18.
  */
@@ -28,11 +31,13 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
 
     private ArrayList<Business> yelpResponseArrayList = new ArrayList<>();
     private Context mcontext;
+    private SharedPreferences shPref;
 
 
     public RestaurantRecyclerViewAdapter(ArrayList<Business> yelpResponseArrayList, Context context) {
         this.yelpResponseArrayList = yelpResponseArrayList;
         this.mcontext = context;
+        shPref = mcontext.getSharedPreferences("Location", MODE_PRIVATE);
     }
 
     @Override
@@ -59,8 +64,12 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
             intent.putExtra("EventLatitude", String.valueOf(latitude));
             intent.putExtra("EventLongitude", String.valueOf(longitude));
             //TO DO: Use Location Service to get Current Location of User
-            intent.putExtra("UserLatitude", String.valueOf(39.253366));
-            intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+//            intent.putExtra("UserLatitude", String.valueOf(39.253366));
+//            intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+            String lat = shPref.getString("Latitude","");
+            String longi = shPref.getString("Longitude","");
+            intent.putExtra("UserLatitude", lat);
+            intent.putExtra("UserLongitude", longi);
             intent.putExtra("Name", business.getName());
             mcontext.startActivity(intent);
         });
