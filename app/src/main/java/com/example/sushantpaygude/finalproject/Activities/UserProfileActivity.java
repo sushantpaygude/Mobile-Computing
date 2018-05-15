@@ -1,11 +1,13 @@
 package com.example.sushantpaygude.finalproject.Activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.sushantpaygude.finalproject.R;
@@ -14,7 +16,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     private Toolbar toolbar;
     private ImageButton uploadPicture;
+    private ImageView userPhoto;
     private RelativeLayout relativeLayout;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         uploadPicture = findViewById(R.id.buttonCameraIcon);
         uploadPicture.setOnClickListener(this);
 
+        userPhoto = findViewById(R.id.imageViewUserPhoto);
+
     }
 
     @Override
@@ -36,9 +42,18 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.buttonCameraIcon:
                 Intent uploadUserPictureIntent = new Intent(this, UserChoosingPhotoActivity.class);
-                startActivity(uploadUserPictureIntent);
+                startActivityForResult(uploadUserPictureIntent, REQUEST_IMAGE_CAPTURE);
                 break;
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("userImage");
+            userPhoto.setImageBitmap(imageBitmap);
+        }
     }
 }

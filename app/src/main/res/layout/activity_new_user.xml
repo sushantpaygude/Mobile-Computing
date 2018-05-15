@@ -41,26 +41,17 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="180dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/colorOrange"
-                android:hint="Name"
+                android:hint="Username"
                 android:textColor="@color/colorOrange"
                 android:textCursorDrawable="@color/colorOrange" />
 
@@ -98,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundedbuttononly"
-        android:src="@drawable/getstart" />
+        android:src="@drawable/submitbutton" />
 
     <View
         android:layout_width="match_parent"

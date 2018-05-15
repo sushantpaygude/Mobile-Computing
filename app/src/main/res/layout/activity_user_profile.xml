@@ -51,12 +51,11 @@
             android:textColor="@color/black"
             android:textStyle="bold" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/imageViewUserPhoto"
-            android:background="@drawable/roundedbuttononly"
             android:src="@drawable/hambergerprofilepicture" />
 
 
