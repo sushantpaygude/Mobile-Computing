@@ -2,12 +2,11 @@ package com.example.sushantpaygude.finalproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,19 +51,16 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         holder.textEventDate.setText("Date: "+event.getDates().getStart().getLocalDate());
         holder.textEventTime.setText("Time: "+event.getDates().getStart().getLocalTime());
 
-        holder.textEventRoute.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mcontext, MapActivity.class);
-                Location location = event.getEmbedded().getVenues().get(0).getLocation();
-                intent.putExtra("EventLatitude", location.getLatitude());
-                intent.putExtra("EventLongitude", location.getLongitude());
-                //TO DO: Use Location Service to get Current Location of User
-                intent.putExtra("UserLatitude", String.valueOf(39.253366));
-                intent.putExtra("UserLongitude", String.valueOf(-76.714099));
-                intent.putExtra("Name", event.getName());
-                mcontext.startActivity(intent);
-            }
+        holder.EventRoute.setOnClickListener(v -> {
+            Intent intent = new Intent(mcontext, MapActivity.class);
+            Location location = event.getEmbedded().getVenues().get(0).getLocation();
+            intent.putExtra("EventLatitude", location.getLatitude());
+            intent.putExtra("EventLongitude", location.getLongitude());
+            //TO DO: Use Location Service to get Current Location of User
+            intent.putExtra("UserLatitude", String.valueOf(39.253366));
+            intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+            intent.putExtra("Name", event.getName());
+            mcontext.startActivity(intent);
         });
     }
 
@@ -85,7 +81,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         private TextView textEventAddress;
         private TextView textEventDate;
         private TextView textEventTime;
-        private TextView textEventRoute;
+        private ImageButton EventRoute;
 
         public EventViewHolder(View itemView) {
             super(itemView);
@@ -94,7 +90,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
             textEventAddress = itemView.findViewById(R.id.textEventAddress);
             textEventDate = itemView.findViewById(R.id.textEventDate);
             textEventTime = itemView.findViewById(R.id.textEventTime);
-            textEventRoute = itemView.findViewById(R.id.textEventRoute);
+            EventRoute = itemView.findViewById(R.id.imageButtonLocationPin);
         }
     }
 }

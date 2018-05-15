@@ -143,6 +143,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 startActivity(intent);
                 break;
             case R.id.nav_account:
+                Intent userProfileIntent = new Intent(this, UserProfileActivity.class);
+                startActivity(userProfileIntent);
                 break;
             case R.id.nav_notification:
                 break;

@@ -37,6 +37,8 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(navigationDrawerIntent);
                 break;
             case R.id.loginButton:
+                Intent signInIntent = new Intent (this, SignInActivity.class);
+                startActivity(signInIntent);
                 break;
         }
     }

@@ -109,6 +109,9 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
             originLocation.setLatitude(userLatitude);
             originLocation.setLongitude(userLongitude);
 
+            Log.e("UserLatitude",String.valueOf(userLatitude));
+            Log.e("UserLongitude",String.valueOf(userLongitude));
+
             destinationCoordinates.setLatitude(latitude);
             destinationCoordinates.setLongitude(longitude);
 
@@ -153,7 +156,7 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
                         // Pass in your Amazon Polly pool id for speech synthesis using Amazon Polly
                         // Set to null to use the default Android speech synthesizer
                         String awsPoolId = null;
-                        boolean simulateRoute = true;
+                        boolean simulateRoute = false;
                         NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                                 .origin(origin)
                                 .destination(destination)
@@ -190,6 +193,8 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
         locationEngine = new LostLocationEngine(MapActivity.this);
         locationEngine.setPriority(LocationEnginePriority.HIGH_ACCURACY);
         locationEngine.activate();
+
+//        setCameraPosition(originLocation);
 
         Location lastLocation = locationEngine.getLastLocation();
         if (lastLocation == null) {
@@ -302,6 +307,8 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
     }
 
     private void getRoute(Point origin, Point destination) {
+
+        Log.d("Origin", "origin:"+String.valueOf(origin));
         NavigationRoute.builder()
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)

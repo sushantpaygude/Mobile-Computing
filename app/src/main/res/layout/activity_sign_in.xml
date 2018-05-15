@@ -55,7 +55,7 @@
 
     <TextView
         android:id="@+id/textViewLOGINTEXT"
-        android:layout_width="wrap_content"
+        android:layout_width="68dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextPassword"
         android:layout_alignRight="@id/loginButton"

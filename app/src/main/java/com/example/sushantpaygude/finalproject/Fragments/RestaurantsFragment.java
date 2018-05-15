@@ -67,7 +67,7 @@ public class RestaurantsFragment extends Fragment {
         restaurantsrecyclerView.addItemDecoration(dividerItemDecoration);
 
 
-        restaurantRecyclerViewAdapter = new RestaurantRecyclerViewAdapter(yelpResponseArrayList);
+        restaurantRecyclerViewAdapter = new RestaurantRecyclerViewAdapter(yelpResponseArrayList, getActivity());
 
         restaurantsrecyclerView.setAdapter(restaurantRecyclerViewAdapter);
         getRestaurants();
