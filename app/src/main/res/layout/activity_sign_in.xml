@@ -26,7 +26,8 @@
         android:backgroundTint="@color/colorOrange"
         android:hint="Your ID"
         android:inputType="textEmailAddress"
-        android:textColor="@color/colorOrange" />
+        android:textColor="@color/colorOrange"
+        android:textCursorDrawable="@color/colorOrange" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -41,7 +42,8 @@
         android:backgroundTint="@color/colorOrange"
         android:hint="Your Password"
         android:inputType="textPassword"
-        android:textColor="@color/colorOrange" />
+        android:textColor="@color/colorOrange"
+        android:textCursorDrawable="@color/colorOrange" />
 
     <ImageButton
         android:id="@+id/loginButton"
@@ -109,6 +111,7 @@
         android:text="Forgot Your Password?"
         android:textAlignment="center"
         android:textColor="@color/colorOrange"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />

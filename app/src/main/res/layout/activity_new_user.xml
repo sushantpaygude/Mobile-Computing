@@ -21,6 +21,7 @@
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/black"
+        android:textCursorDrawable="@color/colorOrange"
         android:textStyle="bold" />
 
     <EditText
@@ -33,7 +34,8 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/colorOrange"
         android:hint="Name"
-        android:textColor="@color/colorOrange" />
+        android:textColor="@color/colorOrange"
+        android:textCursorDrawable="@color/colorOrange" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -46,7 +48,8 @@
         android:backgroundTint="@color/colorOrange"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColor="@color/colorOrange" />
+        android:textColor="@color/colorOrange"
+        android:textCursorDrawable="@color/colorOrange" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -72,7 +75,7 @@
         android:layout_marginRight="55dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/roundedbuttononly"
-        android:src="@drawable/getstart"/>
+        android:src="@drawable/getstart" />
 
     <RelativeLayout
         android:id="@+id/linearLayout"

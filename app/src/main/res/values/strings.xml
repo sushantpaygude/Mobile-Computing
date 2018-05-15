@@ -16,7 +16,7 @@
     <string name="account">Account</string>
     <string name="notification">Notification</string>
     <string name="logout">Log out</string>
-    <string name="todolist">+add to do list</string>
+    <string name="todolist"> + add to do list</string>
     <string name="save">save</string>
 
 
