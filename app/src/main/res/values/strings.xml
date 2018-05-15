@@ -4,8 +4,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="google_api">https://maps.googleapis.com/maps/api/place/textsearch/json?</string>
-    <string name="key">AIzaSyBU3kCs7-rDInj4nnvkYmfmglCHv31uRz4</string>
+    <string name="key">AIzaSyAtnrxzi_IB_lPSsy0kfeFzZsW2WvdexVA</string>
+
     <string name="ip_address">https://intekfriend.000webhostapp.com/</string>
+<!--    <string name="ip_address">https://10.0.0.231/</string> -->
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

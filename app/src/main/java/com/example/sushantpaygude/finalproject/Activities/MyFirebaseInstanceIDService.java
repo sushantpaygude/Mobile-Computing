@@ -22,12 +22,12 @@ import java.net.URL;
  */
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public MyFirebaseInstanceIDService() {
-        super();
+       // super();
     }
 
     @Override
     public void onTokenRefresh() {
-        super.onTokenRefresh();
+        //super.onTokenRefresh();
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("onTokenRefresh", "Refreshed token: " + refreshedToken);

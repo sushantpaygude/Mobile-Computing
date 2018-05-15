@@ -52,6 +52,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -286,12 +287,24 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     mylocation = my_loc_service.getlocation();
                 }
             }
+            String type = "";
+            String query = "";
             ArrayList<String> todoArrayList = tinyDB.getListString(Utilities.TO_DO_LIST_STRING);
-            String todoJson = new Gson().toJson(todoArrayList);
+//            String todoJson = new Gson().toJson(todoArrayList);
+            if(todoArrayList.size() == 0)
+            {
+                type = "store";
+                query = "pen";
+            }
+            else
+            {
+                type = "restaurant";
+                query += todoArrayList.get(0);
+            }
             String api_url = getResources().getString(R.string.google_api);
             String parameters = "";
             parameters += "location=" + mylocation[0] + "," + mylocation[1] +
-                    "&radius=1500&type=store&query=screwdriver&key=" + getResources().getString(R.string.key);
+                    "&radius=1500&type=" + type + "&query=" + query + "&key=" + getResources().getString(R.string.key);
             StringBuilder url_builder = new StringBuilder();
             url_builder.append(api_url);
             url_builder.append(parameters);
