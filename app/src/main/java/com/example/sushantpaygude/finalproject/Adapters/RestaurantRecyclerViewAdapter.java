@@ -1,14 +1,20 @@
 package com.example.sushantpaygude.finalproject.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.sushantpaygude.finalproject.Activities.MapActivity;
+import com.example.sushantpaygude.finalproject.POJOs.TicketMaster.EventResponse.Location;
 import com.example.sushantpaygude.finalproject.POJOs.Yelp.YelpRestaurantResponse.Business;
 import com.example.sushantpaygude.finalproject.R;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,10 +27,12 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
 
 
     private ArrayList<Business> yelpResponseArrayList = new ArrayList<>();
+    private Context mcontext;
 
 
-    public RestaurantRecyclerViewAdapter(ArrayList<Business> yelpResponseArrayList) {
+    public RestaurantRecyclerViewAdapter(ArrayList<Business> yelpResponseArrayList, Context context) {
         this.yelpResponseArrayList = yelpResponseArrayList;
+        this.mcontext = context;
     }
 
     @Override
@@ -36,7 +44,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
     @Override
     public void onBindViewHolder(RestaurantViewHolder holder, int position) {
         //Log.e("Called","Bind");
-        Business business = yelpResponseArrayList.get(position);
+        final Business business = yelpResponseArrayList.get(position);
 
         holder.textRestaurantTitle.setText(business.getName());
         holder.textRestaurantAddress.setText(business.getLocation().getAddress1());
@@ -44,7 +52,18 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
                 .load(business.getImageUrl())
                 .into(holder.imageRestaurant);
         holder.textRatings.setText(String.valueOf(business.getRating()));
-
+        holder.buttonRestaurantRoute.setOnClickListener(v -> {
+            Intent intent = new Intent(mcontext, MapActivity.class);
+            double latitude = business.getCoordinates().getLatitude();
+            double longitude = business.getCoordinates().getLongitude();
+            intent.putExtra("EventLatitude", String.valueOf(latitude));
+            intent.putExtra("EventLongitude", String.valueOf(longitude));
+            //TO DO: Use Location Service to get Current Location of User
+            intent.putExtra("UserLatitude", String.valueOf(39.253366));
+            intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+            intent.putExtra("Name", business.getName());
+            mcontext.startActivity(intent);
+        });
 
     }
 
@@ -60,6 +79,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         private TextView textRestaurantTitle;
         private TextView textRestaurantAddress;
         private TextView textRatings;
+        private ImageButton buttonRestaurantRoute;
 
         public RestaurantViewHolder(View itemView) {
             super(itemView);
@@ -67,6 +87,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
             textRestaurantTitle = itemView.findViewById(R.id.textRestaunrantTitle);
             textRestaurantAddress = itemView.findViewById(R.id.textRestaunrantAddress);
             textRatings = itemView.findViewById(R.id.textRatings);
+            buttonRestaurantRoute = itemView.findViewById(R.id.imageButtonLocationPin);
         }
     }
 

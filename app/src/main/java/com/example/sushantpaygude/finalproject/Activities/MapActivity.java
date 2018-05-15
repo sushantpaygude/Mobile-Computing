@@ -156,7 +156,7 @@ public class MapActivity extends AppCompatActivity implements LocationEngineList
                         // Pass in your Amazon Polly pool id for speech synthesis using Amazon Polly
                         // Set to null to use the default Android speech synthesizer
                         String awsPoolId = null;
-                        boolean simulateRoute = true;
+                        boolean simulateRoute = false;
                         NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                                 .origin(origin)
                                 .destination(destination)

@@ -51,19 +51,16 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         holder.textEventDate.setText("Date: "+event.getDates().getStart().getLocalDate());
         holder.textEventTime.setText("Time: "+event.getDates().getStart().getLocalTime());
 
-        holder.EventRoute.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mcontext, MapActivity.class);
-                Location location = event.getEmbedded().getVenues().get(0).getLocation();
-                intent.putExtra("EventLatitude", location.getLatitude());
-                intent.putExtra("EventLongitude", location.getLongitude());
-                //TO DO: Use Location Service to get Current Location of User
-                intent.putExtra("UserLatitude", String.valueOf(39.253366));
-                intent.putExtra("UserLongitude", String.valueOf(-76.714099));
-                intent.putExtra("Name", event.getName());
-                mcontext.startActivity(intent);
-            }
+        holder.EventRoute.setOnClickListener(v -> {
+            Intent intent = new Intent(mcontext, MapActivity.class);
+            Location location = event.getEmbedded().getVenues().get(0).getLocation();
+            intent.putExtra("EventLatitude", location.getLatitude());
+            intent.putExtra("EventLongitude", location.getLongitude());
+            //TO DO: Use Location Service to get Current Location of User
+            intent.putExtra("UserLatitude", String.valueOf(39.253366));
+            intent.putExtra("UserLongitude", String.valueOf(-76.714099));
+            intent.putExtra("Name", event.getName());
+            mcontext.startActivity(intent);
         });
     }
 
