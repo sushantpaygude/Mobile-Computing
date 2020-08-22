@@ -17,6 +17,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private Toolbar toolbar;
     private ImageButton uploadPicture;
     private ImageView userPhoto;
+    private ImageButton buttonSubmit;
     private RelativeLayout relativeLayout;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -33,6 +34,8 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         uploadPicture.setOnClickListener(this);
 
         userPhoto = findViewById(R.id.imageViewUserPhoto);
+        buttonSubmit = findViewById(R.id.buttonGetStarted);
+        buttonSubmit.setOnClickListener(this);
 
     }
 
@@ -43,6 +46,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             case R.id.buttonCameraIcon:
                 Intent uploadUserPictureIntent = new Intent(this, UserChoosingPhotoActivity.class);
                 startActivityForResult(uploadUserPictureIntent, REQUEST_IMAGE_CAPTURE);
+                break;
+            case R.id.buttonGetStarted:
+                finish();
                 break;
         }
 
